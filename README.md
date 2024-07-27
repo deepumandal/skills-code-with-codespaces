@@ -16,58 +16,81 @@ _Develop code using GitHub Codespaces and Visual Studio Code!_
 </header>
 
 <!--
-  <<< Author notes: Step 2 >>>
+  <<< Author notes: Step 3 >>>
   Start this step by acknowledging the previous step.
   Define terms and link to docs.github.com.
 -->
 
-## Step 2: Add a custom image to your codespace!
+## Step 3: Customize your codespace!
 
-_Nice work! :tada: You created your first codespace and pushed code using VS Code!_
+_Nice work! :tada: You created a codespace with a custom image!_
 
-You can configure the development container for a repository so that any codespace created for that repository will give you a tailored development environment, complete with all the tools and runtimes you need to work on a specific project.
+You can customize your codespace by adding VS code extensions, adding features, setting host requirements, and much more.
 
-**What are development containers?** Development containers, or dev containers, are Docker containers that are specifically configured to provide a fully featured development environment. Whenever you work in a codespace, you are using a dev container on a virtual machine.
+Let's customize some settings in the `devcontainer.json` file!
 
-A dev container file is a JSON file that lets you customize the default image that runs your codespace, VS code settings, run custom code, forward ports and much more!
+### :keyboard: Activity: Add customizations to the `devcontainer` file
 
-Let's add a `devcontainer.json` file and add a custom image.
-
-### :keyboard: Activity: Add a .devcontainer.json file to customize your codespace
-
-1. Navigating back to your **Code** tab of your repository, click the **Add file** drop-down button, and then click `Create new file`.
-1. Type or paste the following in the empty text field prompt to name your file.
-
-   ```
-   .devcontainer/devcontainer.json
-   ```
-
-1. In the body of the new **.devcontainer/devcontainer.json** file, add the following content:
+1. Navigate to the `.devcontainer/devcontainer.json` file.
+1. Add the following customizations to the body of the file before the last `}`.
 
    ```jsonc
-   {
-     // Name this configuration
-     "name": "Codespace for Skills!",
-     // Use the base codespace image
-     "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
-
-     "remoteUser": "codespace",
-     "overrideCommand": false
-   }
+    ,
+    // Add the IDs of extensions you want installed when the container is created.
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.copilot"
+            ]
+        },
+        "codespaces": {
+            "openFiles": [
+                "codespace.md"
+            ]
+        }
+    }
    ```
 
 1. Click **Commit changes** and then select **Commit changes directly to the `main` branch**.
-1. Create a new codespace by navigating back to the **Code** tab of your repository.
-1. Click the green **Code** button located in the middle of the page.
+1. Create a new codespace by navigating to the landing page of your repository.
+1. Click the **Code** button located in the middle of the page.
 1. Click the **Codespaces** tab on the box that pops up.
-1. Click the **Create codespace on main** button OR click the `+` sign on the tab. This will create a new codespace on the main branch. (Notice your other codespace listed here.)
+1. Ensure the number of active codespaces does not reach the maximum (typically 2). For more information, see [understanding the codespace lifecycle](https://docs.github.com/en/codespaces/getting-started/understanding-the-codespace-lifecycle).
+
+   > **Tip**: To stop an active codespace, click the **•••** next to **<span>&#x25cf;</span>Active** and select **Stop codespace** from the menu.
+   
+1. Click the **Create codespace on main** button.
 
    > Wait about **2 minutes** for the codespace to spin itself up.
 
-1. Verify that your new codespace is is running, as you did previously.
+1. Verify your codespace is running, as you did previously.
+1. The `codespace.md` file should show up in the VS Code editor.
+1. The `copilot` extension should show up in the VS Code extension list.
 
-   Note the image being used is the default image provided for GitHub Codespaces. It includes runtimes and tools for Python, Node.js, Docker, and more. See the full list here: https://aka.ms/ghcs-default-image. Your development team can use any custom image that has the necessary prerequisites installed. For more information, see [codespace image](https://aka.ms/configure-codespace).
+   This will add a VS Code extension as well as open a file on start up of the codespace.
 
+Next lets add some code to run upon creation of the codespace!
+
+### :keyboard: Activity: Execute code upon creation of the codespace
+
+1. Edit the `.devcontainer/devcontainer.json` file.
+1. Add the following postCreateCommand to the body of the file before the last `}`.
+
+   ```jsonc
+    ,
+    "postCreateCommand": "echo '# Writing code upon codespace creation!'  >> codespace.md"
+   ```
+
+1. Click **Commit changes** and then select **Commit changes directly to the `main` branch**.
+1. Create a new codespace by navigating to the landing page of your repository.
+1. Click the **Code** button located in the middle of the page.
+1. Click the **Codespaces** tab on the box that pops up.
+1. Click the **Create codespace on main** button.
+
+   > Wait about **2 minutes** for the codespace to spin itself up.
+
+1. Verify your codespace is running, as you did previously.
+1. Verify the `codespace.md` file now has the text `Writing code upon codespace creation!`.
 1. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
 
 <footer>
