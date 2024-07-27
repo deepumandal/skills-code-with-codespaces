@@ -16,68 +16,58 @@ _Develop code using GitHub Codespaces and Visual Studio Code!_
 </header>
 
 <!--
-  <<< Author notes: Step 1 >>>
-  Choose 3-5 steps for your course.
-  The first step is always the hardest, so pick something easy!
-  Link to docs.github.com for further explanations.
-  Encourage users to open new tabs for steps!
+  <<< Author notes: Step 2 >>>
+  Start this step by acknowledging the previous step.
+  Define terms and link to docs.github.com.
 -->
 
-## Step 1: Create your first codespace and push code
+## Step 2: Add a custom image to your codespace!
 
-_Welcome to "Develop code using GitHub Codespaces and Visual Studio Code"! :wave:_
+_Nice work! :tada: You created your first codespace and pushed code using VS Code!_
 
-**What's the big deal about using a codespace for software development?** A codespace is a development environment that's hosted in the cloud. You can customize your project for GitHub Codespaces by committing configuration files to your repository (also known as configuration-as-code), which creates a repeatable codespace configuration for all users of your project. Each codespace you create is hosted by GitHub in a Docker container that runs on a virtual machine. You can choose the type of machine you want to use depending on the resources you need.
+You can configure the development container for a repository so that any codespace created for that repository will give you a tailored development environment, complete with all the tools and runtimes you need to work on a specific project.
 
-GitHub offers a range of features to help your development team customize a codespace to reach peak configuration and performance needs. For example, you can:
+**What are development containers?** Development containers, or dev containers, are Docker containers that are specifically configured to provide a fully featured development environment. Whenever you work in a codespace, you are using a dev container on a virtual machine.
 
-- Create a codespace from your repository.
-- Push code from the codespace to your repository.
-- Use VS Code to develop code.
-- Customize the codespace with custom images.
-- Manage the codespace.
+A dev container file is a JSON file that lets you customize the default image that runs your codespace, VS code settings, run custom code, forward ports and much more!
 
-To begin developing using GitHub Codespaces, you can create a codespace from a template or from any branch or commit in a repository. When you create a codespace from a template, you can start from a blank template or choose a template suitable for the work you're doing.
+Let's add a `devcontainer.json` file and add a custom image.
 
-### :keyboard: Activity: Start a codespace
+### :keyboard: Activity: Add a .devcontainer.json file to customize your codespace
 
-**We recommend opening another browser tab to work through the following activities so you can keep these instructions open for reference.**
+1. Navigating back to your **Code** tab of your repository, click the **Add file** drop-down button, and then click `Create new file`.
+1. Type or paste the following in the empty text field prompt to name your file.
 
-1. Start from the landing page of your repository.
+   ```
+   .devcontainer/devcontainer.json
+   ```
+
+1. In the body of the new **.devcontainer/devcontainer.json** file, add the following content:
+
+   ```jsonc
+   {
+     // Name this configuration
+     "name": "Codespace for Skills!",
+     // Use the base codespace image
+     "image": "mcr.microsoft.com/vscode/devcontainers/universal:latest",
+
+     "remoteUser": "codespace",
+     "overrideCommand": false
+   }
+   ```
+
+1. Click **Commit changes** and then select **Commit changes directly to the `main` branch**.
+1. Create a new codespace by navigating back to the **Code** tab of your repository.
 1. Click the green **Code** button located in the middle of the page.
-1. Select the **Codespaces** tab in the box that pops up and then click the **Create codespace on main** button.
+1. Click the **Codespaces** tab on the box that pops up.
+1. Click the **Create codespace on main** button OR click the `+` sign on the tab. This will create a new codespace on the main branch. (Notice your other codespace listed here.)
 
-   > Wait about 2 minutes for the codespace to spin itself up.
-   > **Note**: It's a virtual machine spinning up in the background.
+   > Wait about **2 minutes** for the codespace to spin itself up.
 
-1. Verify your codespace is running. The browser should contain a VS Code web-based editor and a terminal should be present such as the below:
-   ![codespace1](https://user-images.githubusercontent.com/26442605/207355196-71aab43f-35a9-495b-bcfe-bf3773c2f1b3.png)
+1. Verify that your new codespace is is running, as you did previously.
 
-### :keyboard: Activity: Push code to your repository from the codespace
+   Note the image being used is the default image provided for GitHub Codespaces. It includes runtimes and tools for Python, Node.js, Docker, and more. See the full list here: https://aka.ms/ghcs-default-image. Your development team can use any custom image that has the necessary prerequisites installed. For more information, see [codespace image](https://aka.ms/configure-codespace).
 
-1. From inside the codespace in the VS Code explorer window, select the `index.html` file.
-1. Replace the **h1** header with the below:
-
-   ```html
-   <h1>Hello from the codespace!</h1>
-   ```
-
-1. Save the file.
-   > **Note**: The file should autosave.
-1. Use the VS Code terminal to commit the file change by entering the following commit message:
-
-   ```shell
-   git commit -a -m "Adding hello from the codespace!"
-   ```
-
-1. Push the changes back to your repository. From the VS Code terminal, enter:
-
-   ```shell
-   git push
-   ```
-
-1. Your code has been pushed to your repository!
-1. Switch back to the homepage of your repository and view the `index.html` to verify the new code was pushed to your repository.
 1. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
 
 <footer>
